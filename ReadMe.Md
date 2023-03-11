@@ -29,5 +29,5 @@ If the molecule being examined is long, the generation of 10,000 conformers will
 
 ```
 ConformerNumber = 10000
-MaxIterations = 200
+MaxIterations = 500
 ```

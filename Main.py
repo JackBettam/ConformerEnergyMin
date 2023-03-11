@@ -18,7 +18,7 @@ name_list = imported_file[name_col_name].to_list()                  #Producing a
 
 #settings for conformer generation & MMFF iterations
 ConformerNumber = 10000
-MaxIterations = 200
+MaxIterations = 500
 
 converged_count = 0
 non_converged_count = 0
