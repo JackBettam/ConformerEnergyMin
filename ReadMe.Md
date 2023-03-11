@@ -13,3 +13,4 @@ There are 3 required packages that are required for the script to run correctly:
 # How to use script
 The script expects to have SMILES strings in the second column. If this is not the case - change the variable 'SMILES_column' to the correct column. 
 The identifier is expected in the first column. Again, if this is not the case, please change the variable 'molecule_name_column'
+Conformer generation is set to 10000 - this also uses a multithread command. If molecule is large, reduce the number of conformer generation. 
