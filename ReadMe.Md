@@ -1,16 +1,15 @@
-Workflow currently being updated
+# Conformer Generation & Minimisation
+This script uses Python and the required packages are shown [below](https://github.com/JackBettam/ConformerEnergyMin##required-packages). 
+Currently, the program is built for organic based molecules, and uses the MMFF94 as the forcefield. Inorganic molecules should not be inputted to this forcefield, as results will not be accurate. 
+10,000 conformers are generated for each molecule. For large molecules, this will take computational power to run, and may take some time. To edit this code, see [below](https://github.com/JackBettam/ConformerEnergyMin##how-to-use-script)
 
-# Which forcefield to use?
-* MMFF is typically good at finding organic conformers.
-* UFF is good at replicating structures across the periodic table, making it better suited for inorganic compounds. 
-
-# Required packages
+## Required packages
 There are 3 required packages that are required for the script to run correctly:
 * pandas
 * rdkit
 * OS
 
-# How to use script
-The script expects to have SMILES strings in the second column. If this is not the case - change the variable 'SMILES_column' to the correct column. 
-The identifier is expected in the first column. Again, if this is not the case, please change the variable 'molecule_name_column'
-Conformer generation is set to 10000 - this also uses a multithread command. If molecule is large, reduce the number of conformer generation. 
+## How to use script
+### Input file
+An expected type of file is shown in the 'TestImport.csv'. 2 columns are required:
+* Column A is expected to be the  
