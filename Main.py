@@ -20,7 +20,6 @@ name_list = imported_file[name_col_name].to_list()                  #Producing a
 ConformerNumber = 10000
 MaxIterations = 500
 
-converged_count = 0
 non_converged_count = 0
 
 for i in range(len(smiles_list)):
@@ -35,12 +34,16 @@ for i in range(len(smiles_list)):
     #Initialising energies
     minEnergy = 999999
     minEnergy_idx = None
+    #compares minimum energy of optimisation
     for index, result in enumerate(MMFF_out):
         if result[0] == 0:
             if minEnergy > result[1]:
                 minEnergy = result[1]
                 minEnergy_idx = index
-    #print(minEnergy_idx, ' : ', minEnergy)
+        if result[0] != 0:
+            # if result[0] = 1 the moelcule has not convertged.
+            non_converged_count =+1 
     mol_h.SetProp('Minimum Energy', str(minEnergy))
-    print(mol_h.GetProp('Minimum Energy'))
-
+    #Outputs as an SDF file
+    writer = Chem.SDWriter(str(mol_h.GetProp('Name')) + '.sdf')
+    writer.write(mol_h, confId = minEnergy_idx)
