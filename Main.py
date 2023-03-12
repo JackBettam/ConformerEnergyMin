@@ -27,7 +27,7 @@ for i in range(len(smiles_list)):
     mol_name = name_list[i]
     print(mol_name)
     mol_h = Chem.AddHs(mol)
-    mol_h.SetProp('Name', str(mol_name))
+    mol_h.SetProp('_Name', str(mol_name))
     conformer_ids = AllChem.EmbedMultipleConfs(mol_h, numConfs = ConformerNumber, useBasicKnowledge = True, enforceChirality = True, numThreads=0)
     print(len(list(conformer_ids)), ' conformers')
     MMFF_out = AllChem.MMFFOptimizeMoleculeConfs(mol_h, maxIters = MaxIterations, numThreads = 0)
@@ -45,5 +45,5 @@ for i in range(len(smiles_list)):
             non_converged_count =+1 
     mol_h.SetProp('Minimum Energy', str(minEnergy))
     #Outputs as an SDF file
-    writer = Chem.SDWriter(str(mol_h.GetProp('Name')) + '.sdf')
+    writer = Chem.SDWriter(str(mol_h.GetProp('_Name')) + '.sdf')
     writer.write(mol_h, confId = minEnergy_idx)
