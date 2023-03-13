@@ -22,7 +22,6 @@ MaxIterations = 500
 
 #non-converged molecules
 non_converged_count = 0
-non_converged_data =[]
 
 for i in range(len(smiles_list)):
     mol = Chem.MolFromSmiles(smiles_list[i])
@@ -67,4 +66,4 @@ for i in range(len(smiles_list)):
 #Creating formal dataframe
 df = pd.DataFrame(df, columns=['ID', 'SMILES', 'Minimum energy'])
 print(df)
-print(non_converged_count)
+print('Number of non-converged molecules: ', non_converged_count)
