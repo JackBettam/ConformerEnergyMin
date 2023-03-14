@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-def logger(log, message, file='log.txt'):
+def logger(message, file='log.txt'):
     now = datetime.now().isoformat(' ', 'seconds')
     log = open(file, 'a')
     log.write(str(now) + ': ' + str(message))

@@ -1,15 +1,21 @@
 from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
 import pandas as pd
-import os
 import sys
+from includes.ImportExport import ImportExport
+from includes.Logger import initiate_log, logger
 
-source_file = 'TestImport.csv'
+log = initiate_log()
+
+source_file, output_dir = ImportExport(sys.argv)
+
+#source_file = 'TestImport.csv'
 SMILES_column = 1
 molecule_name_column = 0
 
 # Reading CSV & making a list of SMILES
-imported_file = pd.read_csv(source_file)
+imported_file = pd.read_csv(str(source_file))
+logger(str(source_file) + ' read succesfully')
 smiles_col_name = list(imported_file.columns)[SMILES_column]        #identifying SMILES column
 name_col_name = list(imported_file.columns)[molecule_name_column]   #identifying molecule names
 smiles_list = imported_file[smiles_col_name].to_list()              #Producing a list of SMILES
@@ -29,11 +35,15 @@ for i in range(len(smiles_list)):
     mol_name = name_list[i]
     mol_h = Chem.AddHs(mol)
     mol_h.SetProp('_Name', str(mol_name))
+    logger(str( mol_h.GetProp('_Name')) + ' succesfully read.')
     print('Testing: ', mol_h.GetProp('_Name'))
     
     #embedding molecule and generating conformers 
     conformer_ids = AllChem.EmbedMultipleConfs(mol_h, numConfs = ConformerNumber, useBasicKnowledge = True, enforceChirality = True, numThreads=0)
+    logger(str( mol_h.GetProp('_Name')) + ' succesfully embedded with ' + str(ConformerNumber) + ' conformers.')
     MMFF_out = AllChem.MMFFOptimizeMoleculeConfs(mol_h, maxIters = MaxIterations, numThreads = 0)
+    logger(str( mol_h.GetProp('_Name')) + ' succesfully optimised.')
+
     
     #Initialising energies
     minEnergy = 999999
@@ -50,13 +60,18 @@ for i in range(len(smiles_list)):
             # if result[0] = 1 the moelcule has not converged
             non_converged_count =+1
             print('Warning:', mol_h.GetProp('_Name'), 'could not converged')
+            logger(str( mol_h.GetProp('_Name')) + ' failed to converge.')
     mol_h.SetProp('Minimum Energy ', str(minEnergy))
+    logger(str( mol_h.GetProp('_Name')) + ' succesfully energy minimised.')
+
    
     #Outputs as an SDF file
-    writer = Chem.SDWriter(str(mol_h.GetProp('_Name')) + '.sdf')
+    file_name = str(output_dir) + str(mol_h.GetProp('_Name') + '.sdf') 
+    writer = Chem.SDWriter(file_name)
     writer.write(mol_h, confId = minEnergy_idx)
     writer.flush()
     writer.close()
+    logger(str( mol_h.GetProp('_Name')) + ' outputted as ' + str(file_name))
 
     #Appending data to dataframe
     df_data = [str(mol_h.GetProp('_Name')), str(smiles_list[i]), str(minEnergy)]
