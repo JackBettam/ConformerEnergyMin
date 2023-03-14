@@ -2,6 +2,7 @@ from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
 import pandas as pd
 import os
+import sys
 
 source_file = 'TestImport.csv'
 SMILES_column = 1
