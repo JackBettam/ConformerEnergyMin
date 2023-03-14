@@ -1,0 +1,28 @@
+2023-03-14 15:04:09: Created log file.
+2023-03-14 15:04:09: Output directory not specified.
+2023-03-14 15:07:48: Output directory not specified.
+2023-03-14 15:15:01: Output directory not specified.
+2023-03-14 15:15:40: Output directory not specified.
+2023-03-14 15:17:22: Output directory not specified.
+2023-03-14 15:17:49: No input file specified. Aborted.
+2023-03-14 16:02:28: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/UserImport.Py']
+2023-03-14 16:02:28: No input file specified. Aborted.
+2023-03-14 16:02:56: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/UserImport.Py']
+2023-03-14 16:02:56: No input file specified. Aborted.
+2023-03-14 16:09:57: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/ImportExport.Py']
+2023-03-14 16:09:57: No input file specified. Aborted.
+2023-03-14 16:10:49: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/ImportExport.Py', 'c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv']
+2023-03-14 16:10:49: Input file specified asc:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv
+2023-03-14 16:10:49: Output directory not specified. Outputting tooutput/
+2023-03-14 16:10:49: Input file not a CSV. Aborted
+2023-03-14 16:11:27: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/ImportExport.Py', 'c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv']
+2023-03-14 16:11:27: Input file specified asc:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv
+2023-03-14 16:11:27: Output directory not specified. Outputting tooutput/
+2023-03-14 16:11:51: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/ImportExport.Py', 'c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv']
+2023-03-14 16:11:51: Input file specified asc:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv
+2023-03-14 16:11:51: Output directory not specified. Outputting tooutput/
+2023-03-14 16:12:01: ['c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/includes/ImportExport.Py', 'c:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv']
+2023-03-14 16:12:01: Input file specified asc:/Users/jackb/OneDrive/Documents/GitHub/ConformerEnergyMin/TestImport.csv
+2023-03-14 16:12:01: Output directory not specified. Outputting tooutput/
+2023-03-14 16:12:01: File is CSV.
+2023-03-14 16:12:01: Made output directory
