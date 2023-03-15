@@ -11,21 +11,4 @@ There are several required packages that for the script to run correctly. Many o
 There are also 2 packages coded in locally - documentation is being built, but these will help with loading, outputting and making logging easier. 
 
 ## How to use script
-Full documentation can be provided in the docs 
-
-### Calling Script
-The script can be called in the command line (or PowerShell). There should be 3 inputs (including the script), put in the following order
-
-```
-Main.Py <input_file.csv> <OutputDir>
-```
-
-* Main.Py is the main script - this should be called first
-* input_file.csv is a CSV file - this should also include its directory if not in the same directory as the script. Expected input file types can be seen [below](#input-file)
-* OutputDir is the output directory that can be exported to. See [below](#outputs--results) for more details.  
-
-By removing the above line, the code can be executed in an IDE, and adding the source file location. 
-
-```
-source_file = 'TestImport.csv'
-```
+Full documentation can be provided in the docs folder. 
