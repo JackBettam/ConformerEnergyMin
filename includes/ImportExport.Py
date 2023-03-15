@@ -1,6 +1,6 @@
 import sys
 import os
-from includes.Logger import initiate_log, logger
+from includes.Logger import logger
 
 def ImportExport(input):
     #logging user inputs

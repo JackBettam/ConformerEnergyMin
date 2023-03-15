@@ -3,9 +3,7 @@ from rdkit.Chem import AllChem, Draw
 import pandas as pd
 import sys
 from includes.ImportExport import ImportExport
-from includes.Logger import initiate_log, logger
-
-log = initiate_log()
+from includes.Logger import logger
 
 source_file, output_dir = ImportExport(sys.argv)
 
