@@ -11,4 +11,4 @@ There are several required packages that for the script to run correctly. Many o
 There are also 2 packages coded in locally - documentation is being built, but these will help with loading, outputting and making logging easier. 
 
 ## How to use script
-Full documentation can be provided in the docs folder. 
+Full documentation is  provided in the [docs](/docs/Main.Md) folder. 
