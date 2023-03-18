@@ -6,9 +6,9 @@ from includes.ImportExport import ImportExport, TempDirGen, TempDirCleanup
 from includes.Logger import logger
 from includes.Zipper import compress
 
-#source_file, output_dir = ImportExport(sys.argv)
+source_file, output_dir = ImportExport(sys.argv)
 
-source_file, output_dir = 'TestImport.csv', 'output'
+#source_file, output_dir = 'TestImport.csv', 'output'       #IDE only
 SMILES_column = 1
 molecule_name_column = 0
 
@@ -82,7 +82,7 @@ compress('__temp__', output_dir, 'sdf', 'SDF Files.zip')
 
 #Creating formal dataframe
 df = pd.DataFrame(df, columns=['ID', 'SMILES', 'Minimum energy'])
-print(df)
+
 print('Number of non-converged molecules: ', non_converged_count)
 
 TempDirCleanup()
