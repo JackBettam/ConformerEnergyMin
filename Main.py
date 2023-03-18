@@ -2,12 +2,12 @@ from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
 import pandas as pd
 import sys
-from includes.ImportExport import ImportExport
+from includes.ImportExport import ImportExport, TempDirGen, TemDirCleanup
 from includes.Logger import logger
 
-source_file, output_dir = ImportExport(sys.argv)
+#source_file, output_dir = ImportExport(sys.argv)
 
-#source_file = 'TestImport.csv'
+source_file = 'TestImport.csv'
 SMILES_column = 1
 molecule_name_column = 0
 
@@ -19,7 +19,6 @@ name_col_name = list(imported_file.columns)[molecule_name_column]   #identifying
 smiles_list = imported_file[smiles_col_name].to_list()              #Producing a list of SMILES
 name_list = imported_file[name_col_name].to_list()                  #Producing a list of names
 df =[]                                                              #Empty dataframe to append into
-
 
 #settings for conformer generation & MMFF iterations
 ConformerNumber = 10000
@@ -64,7 +63,8 @@ for i in range(len(smiles_list)):
 
    
     #Outputs as an SDF file
-    file_name = str(output_dir) + str(mol_h.GetProp('_Name') + '.sdf') 
+    temp_dir = TempDirGen()
+    file_name = str(temp_dir) + '/' + str(mol_h.GetProp('_Name') + '.sdf') #outputting to a temp directory
     writer = Chem.SDWriter(file_name)
     writer.write(mol_h, confId = minEnergy_idx)
     writer.flush()
@@ -81,3 +81,5 @@ for i in range(len(smiles_list)):
 df = pd.DataFrame(df, columns=['ID', 'SMILES', 'Minimum energy'])
 print(df)
 print('Number of non-converged molecules: ', non_converged_count)
+
+print(TemDirCleanup())

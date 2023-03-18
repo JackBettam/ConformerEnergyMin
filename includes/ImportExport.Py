@@ -46,5 +46,31 @@ def ImportExport(input):
         logger('Made output directory')
     else:
         logger('Output directroy already exists')
+
+    #generating temp dir
     
     return source_file, output_dir
+
+def TempDirGen(tempdir = '__temp__'):
+    if os.path.exists(tempdir) == False:
+        os.mkdir(tempdir)
+        logger('Made temporary directory')
+    else:
+        logger('Temporary directory already exists')
+    return tempdir
+
+def TemDirCleanup(tempdir = '__temp__'):
+    '''
+    This will first delete all files in a given directory, and then delete the directory.
+    '''
+    files_deleted = []
+    if os.path.exists(tempdir) == True:
+        for i in os.listdir(tempdir):
+            file = tempdir + '/' + i
+            if os.path.isfile(file) == True:
+                files_deleted.append(file)
+                logger('Deleted: ' + str(file))
+                os.remove(file)
+    logger('Deleted: ' + str(tempdir))
+    os.rmdir(tempdir)
+    return files_deleted
