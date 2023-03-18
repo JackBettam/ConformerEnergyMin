@@ -2,12 +2,13 @@ from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
 import pandas as pd
 import sys
-from includes.ImportExport import ImportExport, TempDirGen, TemDirCleanup
+from includes.ImportExport import ImportExport, TempDirGen, TempDirCleanup
 from includes.Logger import logger
+from includes.Zipper import compress
 
 #source_file, output_dir = ImportExport(sys.argv)
 
-source_file = 'TestImport.csv'
+source_file, output_dir = 'TestImport.csv', 'output'
 SMILES_column = 1
 molecule_name_column = 0
 
@@ -77,9 +78,11 @@ for i in range(len(smiles_list)):
 
     print('Successfully tested: ', mol_h.GetProp('_Name'))
 
+compress('__temp__', output_dir, 'sdf', 'SDF Files.zip')
+
 #Creating formal dataframe
 df = pd.DataFrame(df, columns=['ID', 'SMILES', 'Minimum energy'])
 print(df)
 print('Number of non-converged molecules: ', non_converged_count)
 
-print(TemDirCleanup())
+TempDirCleanup()

@@ -59,7 +59,7 @@ def TempDirGen(tempdir = '__temp__'):
         logger('Temporary directory already exists')
     return tempdir
 
-def TemDirCleanup(tempdir = '__temp__'):
+def TempDirCleanup(tempdir = '__temp__'):
     '''
     This will first delete all files in a given directory, and then delete the directory.
     '''

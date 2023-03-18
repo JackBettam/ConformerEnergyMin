@@ -29,6 +29,4 @@ def compress(InputDir, OutputDir = None, FileExtension='All', ZipName = 'Data.zi
     for file in ZipFiles:
         #print(file)
         zf.write(InputDir + '\\' +file, file, compress_type=compression)
-    
-
-print(help(compress))
+    zf.close
