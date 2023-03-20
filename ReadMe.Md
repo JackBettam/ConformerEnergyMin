@@ -12,3 +12,4 @@ There are also 2 packages coded in locally - documentation is being built, but t
 
 ## How to use script
 Full documentation is  provided in the [docs](/docs/Main.Md) folder. 
+A zip file is outputted with an SDF file for each of the molecules. 
