@@ -31,5 +31,5 @@ from includes.ImportExport import TempDirGen
 temp_dir = TempDirGen()
 ```
 
-This creates a directory called '__Temp__'
+This creates a directory called ```__Temp__``` 
 
