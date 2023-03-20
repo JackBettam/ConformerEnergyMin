@@ -47,7 +47,7 @@ MaxIterations = 500
 
 ## Outputs & Results
 Currently, for each molecule in the import file, a SDF file will be exported with the molecule name,  minimum energy properties, and coordinates for the minimum energy.
-This can hence create a large number of SDF files and as such, it is recommended that a seperate output directory is specified to ensure that the root directory does not get clogged up. 
-In future commits, the code will likely include a function to zip these conformers, and also include a CSV of the outputted properties. 
+A temporary directory will be made containing the SDF files. Given that it can take some time to iterate for all molecules, this temporary directory will exist until the script is finished. 
+The outputted SDF files will then be copied to a Zip file and placed into an output directory. The temporary files will then be deleted. 
 
 A comprehensive log is provided as a text file in the root directory. 
