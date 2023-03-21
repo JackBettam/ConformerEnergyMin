@@ -82,6 +82,9 @@ compress('__temp__', output_dir, 'sdf', 'SDF Files.zip')
 
 #Creating formal dataframe
 df = pd.DataFrame(df, columns=['ID', 'SMILES', 'Minimum energy'])
+csv_file_name = str(output_dir) + '/' + str(source_file.split('.')[0]) + '_results.csv'
+print(csv_file_name)
+df.to_csv(csv_file_name, index=False)
 
 print('Number of non-converged molecules: ', non_converged_count)
 
