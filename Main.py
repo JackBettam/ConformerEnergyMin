@@ -6,9 +6,9 @@ from includes.ImportExport import ImportExport, TempDirGen, TempDirCleanup
 from includes.Logger import logger
 from includes.Zipper import compress
 
-source_file, output_dir = ImportExport(sys.argv)
+#source_file, output_dir = ImportExport(sys.argv)
 
-#source_file, output_dir = 'TestImport.csv', 'output'       #IDE only
+source_file, output_dir = 'TestImport.csv', 'output'       #IDE only
 SMILES_column = 1
 molecule_name_column = 0
 
