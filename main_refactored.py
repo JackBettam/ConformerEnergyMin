@@ -3,10 +3,11 @@ from includes.Logger import logger
 from includes.ImportExport import ImportExport, TempDirGen, TempDirCleanup
 from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
+import csv
 
 #To do:
     # DONE 1 Make readdata function
-    #2 Convert mol iterator into a function
+    # DONE 2 Convert mol iterator into a function
     #3 refactor the comparing minimum energy optimisations
     #4 use a with loop to close - ensure memory stability
     #5 use main() def with __name__ = __main__ check
@@ -27,15 +28,37 @@ def ReadData(InputFile):
     return result
 
 data = list(ReadData(source_file))
-print(data)
+#print(data)
 
-def GenerateConformers(ZippedData, ConformersGenerated = 10000, MaxIterations = 500):
+def GenerateMolWithH(ZippedData):
+    df = []
     for name, smile in ZippedData:
+        #Converting to molecule with hydrogens and naming
         mol = Chem.MolFromSmiles(smile)
         mol_h = Chem.AddHs(mol)
         mol_h.SetProp('_Name', name)
+        logger(str( mol_h.GetProp('_Name')) + ' succesfully read and added to list.')
+        df.append(mol_h)
+    logger("Zip succesfully read and imported 1D dataframe. Returning back to caller.")
+    return df
+
+def GenerateConformers(ZippedData, ConformersGenerated = 10000, MaxIterations = 500):
+    logger("Sending zipped data to GenerateMolWithH function.")
+    data = GenerateMolWithH(ZippedData)
+    df = []
+    #df should contain Mol with H and their name as a prop
+    #print(type(df))
+    for i in data:
+        print("Testing", i.GetProp('_Name'))
+        AllChem.EmbedMultipleConfs(i, numConfs=ConformersGenerated, useBasicKnowledge = True, enforceChirality = True, numThreads=0)
+        logger(str( i.GetProp('_Name')) + ' succesfully embedded with ' + str(ConformersGenerated) + ' conformers.')
+        MMFF_out = AllChem.MMFFOptimizeMoleculeConfs(i, maxIters = MaxIterations, numThreads = 0)
+        logger(str( i.GetProp('_Name')) + ' succesfully optimised.')
+        df.append(MMFF_out)
+    return df
 
 
-
-
-GenerateConformers(data)
+df = GenerateConformers(data)
+with open("out.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(df)
