@@ -3,6 +3,8 @@ from includes.Logger import logger
 from includes.ImportExport import ImportExport, TempDirGen, TempDirCleanup
 from rdkit import Chem
 from rdkit.Chem import AllChem, Draw
+from includes.Zipper import compress
+
 
 #To do:
     # DONE 1 Make readdata function
@@ -68,11 +70,29 @@ def MinimimEnergySelection(Mol, StoredEnergies):
             if CurrentEnergy < minEnergyValue:
                 minEnergyValue = CurrentEnergy
                 minEnergyIndex = index
-        mol[OuterIndex].SetProp('Minimum Energy', str(minEnergyValue))
-        logger(str( mol[OuterIndex].GetProp('_Name')) + ' succesfully energy minimised.')
-        print(mol[OuterIndex].GetProp('_Name'), 'minimised with an energy of', minEnergyValue)
-    return mol
+        Mol[OuterIndex].SetProp('Minimum Energy', str(minEnergyValue))
+        logger(str( Mol[OuterIndex].GetProp('_Name')) + ' succesfully energy minimised.')
+        print(Mol[OuterIndex].GetProp('_Name'), 'minimised with an energy of', minEnergyValue)
+        dfData = [Mol[OuterIndex], minEnergyIndex]
+        df.append(dfData)
+    return df
 
+
+def Writer(array, output_directory):
+    temp_dir = TempDirGen()
+    for entry in array:
+        mol_h = entry[0]
+        minEnergyIndex = entry[1]
+        FileName = str(temp_dir) + '/' + str(mol_h.GetProp('_Name') + '.sdf')
+        writer = Chem.SDWriter(FileName)
+        writer.write(mol_h, confId = minEnergyIndex)
+        writer.flush()
+        writer.close()
+        logger(str( mol_h.GetProp('_Name')) + ' outputted as ' + str(FileName))
+    compress('__temp__', output_directory, 'sdf', 'SDF Files2.zip')
+    TempDirCleanup()
 
 mol, df = GenerateConformers(data)
-print(MinimimEnergySelection(mol, df))
+data2 = MinimimEnergySelection(mol, df)
+
+Writer(data2, output_dir)
